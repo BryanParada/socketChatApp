@@ -35,7 +35,15 @@
 
         </div>
         <div class="col-sm-6">
-
+            
+                <h1>Manual Login</h1>
+                <hr>
+			<form class="d-grid">
+                <input type="text" name="email" class="form-control mb-2" placeholder="Email"/>
+                <input type="text" name="password" class="form-control mb-2" placeholder="Password"/>
+    
+                <button type="submit" class="btn btn-primary"> Enter </button>
+            </form>
         </div>
     </div>
 
@@ -49,50 +57,7 @@
     <script src="https://accounts.google.com/gsi/client" async defer></script>
      
 
-    <script>
-
-        console.log(window.location.hostname.includes('localhost'));
-        
-        var url = ( window.location.hostname.includes('localhost'))
-                ? 'http://localhost:8080/api/auth/google'
-                : 'https://restserver-production-eb21.up.railway.app/api/auth/google'
- 
-
-        function handleCredentialResponse(response) {
-
-         //GOOGLE TOKEN: ID_TOKEN
-         //console.log('ID_TOKEN', response.credential);
-
-         const body = { id_token: response.credential }
-
-         fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type':'application/json'
-            },
-            body: JSON.stringify(body)
-         })
-            .then( resp => resp.json() )
-            .then( resp => {
-                console.log(resp); 
-				localStorage.setItem('email', resp.user.email )
-            })
-            .catch(console.warn );
-         
-        }
-
-        const button = document.getElementById('g_id_signout');
-         button.onclick = () => {
-
-            console.log(google.accounts.id)
-            google.accounts.id.disableAutoSelect()
-            google.accounts.id.revoke(localStorage.getItem('email'), done => {
-                console.log('consent revoked');
-                localStorage.clear()
-                location.reload()
-            });
-        }
-      </script>
+    <script src="./js/auth.js"></script>
 
 </body>
 </html>
