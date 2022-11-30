@@ -49,8 +49,9 @@ const connectSocket = async() =>{
         console.log('Sockets Offline') 
     });
 
-    socket.on('receive-msg', () => {
-     //TODO:
+    socket.on('receive-msg', (payload) => {
+        console.log(payload);
+        
     })
     
     // socket.on('active-users', (payload) => {
@@ -85,6 +86,18 @@ const drawUsers = (users = []) =>{
     ulUsers.innerHTML = usersHTML;
 
 }
+
+txtMessage.addEventListener('keyup', ({keyCode}) =>{
+    const msg = txtMessage.value;
+    const uid = txtUid.value;
+
+    if( keyCode !== 13){return;}
+    if( msg.length === 0){return;}
+
+    socket.emit('send-msg', { msg, uid });
+    txtMessage.value = "";
+    
+})
 
 const main = async() => {
 
