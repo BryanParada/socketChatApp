@@ -49,15 +49,18 @@ const connectSocket = async() =>{
         console.log('Sockets Offline') 
     });
 
-    socket.on('receive-msg', (payload) => {
-        console.log(payload);
-        
-    })
+    ////OPCION1
+    // socket.on('receive-msg', (payload) => {
+    //     drawMessages(payload)
+    // });
+    ////OPCION2  
+    socket.on('receive-msg', drawMessages); 
     
+     ////OPCION1
     // socket.on('active-users', (payload) => {
-    //     console.log(payload);
-        
+    //     console.log(payload); 
     // })
+    ////OPCION2  
     socket.on('active-users', drawUsers);
 
     socket.on('private-msg', () => {
@@ -84,6 +87,28 @@ const drawUsers = (users = []) =>{
     });
 
     ulUsers.innerHTML = usersHTML;
+
+}
+
+const drawMessages = (messages = []) =>{
+    //console.log(users);
+    
+    let messagesHTML = '';
+    messages.forEach( ({name, message}) => {
+
+        messagesHTML += `
+            <li>
+                <p>
+                    <span class="text-primary"> ${name}  </span>
+                    <span> ${message} </span>
+                </p>
+            </li>
+        
+        
+        `;
+    });
+
+    ulMessages.innerHTML = messagesHTML;
 
 }
 

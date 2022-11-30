@@ -11,12 +11,13 @@ const socketController = async( socket = new Socket(), io) => {
     if ( !user ){
         return socket.disconnect();
     }
-    
+ 
     //console.log(user.name, 'is connected');
 
     //Agregar el usuario conectado
     chatMessages.connectUser( user );
     io.emit('active-users', chatMessages.usersArr);
+    socket.emit('receive-msg', chatMessages.last10);
 
     //limpiar cuando alguien se desconecta
     socket.on('disconnect', () => {
