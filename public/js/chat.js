@@ -63,8 +63,9 @@ const connectSocket = async() =>{
     ////OPCION2  
     socket.on('active-users', drawUsers);
 
-    socket.on('private-msg', () => {
-        //TODO:
+    socket.on('private-msg', (payload) => {
+        console.log('Private', payload);
+        
     });
 }
 
