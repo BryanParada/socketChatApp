@@ -2,8 +2,8 @@
 RestServer chat app made in Node JS
 
 ![image](https://user-images.githubusercontent.com/51382458/205362390-72c927a7-bd03-45c3-bb52-00636252c80e.png) 
-
-![image](https://user-images.githubusercontent.com/51382458/205361101-4ec83062-4556-45ff-b606-9ca0581a59c1.png)
+ 
+![asdasdasd](https://user-images.githubusercontent.com/51382458/205363040-177716dc-429a-4568-b9e2-ea74168f7f54.jpg)
 
 
 
